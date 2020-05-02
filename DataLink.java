@@ -1,4 +1,5 @@
 // json_simple V3.1.1
+
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -54,7 +55,7 @@ public class DataLink {
     private void get_download(String url, String file_name) {
         try {
             InputStream input = new URL(url).openStream();
-            System.out.println("Downloading...");
+            System.out.println("Downloading: " + file_name);
             Files.copy(input, Paths.get(file_name), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
@@ -105,15 +106,19 @@ public class DataLink {
             // get all available dates
             j = get("https://api.iextrading.com/1.0/tops/hist");
         } else {
-            // get specified tickers
+            // get specified date
             j = get("https://api.iextrading.com/1.0/hist?date=" + date);
-            System.out.println("Done");
         }
 
         if (download) {
             for (Object obj_data : j) {
                 JsonObject data = (JsonObject) obj_data;  // convert type Object to type JsonObject
-                get_download(data.get("link").toString(), "IEX_DEEP_" + data.get("date").toString() + ".gz");
+                if (data.get("feed").equals("DEEP")){
+                    get_download(data.get("link").toString(), "IEX_DEEP_" + data.get("date").toString() + ".gz");
+                }
+                else if(data.get("feed").equals("TOPS")){
+                    get_download(data.get("link").toString(), "IEX_TOPS_" + data.get("date").toString() + ".gz");
+                }
             }
         }
         return j;
