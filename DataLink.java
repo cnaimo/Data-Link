@@ -100,7 +100,7 @@ public class DataLink {
     }
 
     public JsonArray hist(String date, Boolean download) {
-        // Data on last execution for given ticker(s)
+        // IEX historical data
         JsonArray j;
         if (date.isEmpty()) {
             // get all available dates
