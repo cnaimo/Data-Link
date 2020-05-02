@@ -14,12 +14,12 @@ Questions? Feel free to reach out via my LinkedIn on my profile page. I'm also s
 
 # Usage
 Clone this repo and add DataLink.java to your project directory. Start by defining a new instance of the 
-DataLink class in your main function. All methods in the DataLink class return JsonArray types. Timouts can be specified in the DataLink class (default is 5 sec connection timeout, 5 sec response timout).
+DataLink class in your main function. All methods in the DataLink class return JsonArray types. Timeouts can be specified in the DataLink class (default is 5 sec connection timeout, 5 sec response timeout).
 
 ``` java
 DataLink iex = new DataLink();
 
-// timouts can be customized
+// timeouts can be customized
 iex.connect_timeout = 5;
 iex.response_timeout = 5;
 
