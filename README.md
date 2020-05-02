@@ -10,6 +10,7 @@ Questions? Feel free to reach out via my LinkedIn on my profile page. I'm also s
 
 # Important Links
 * [IEX API Terms of Use](https://iextrading.com/api-terms/)
+* {IEX API Documentation](https://iextrading.com/developers/docs/#getting-started)
 
 # Usage
 Clone this repo and add DataLink.java to your project directory. Start by defining a new instance of the 
