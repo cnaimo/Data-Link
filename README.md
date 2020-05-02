@@ -14,10 +14,14 @@ Questions? Feel free to reach out via my LinkedIn on my profile page. I'm also s
 
 # Usage
 Clone this repo and add DataLink.java to your project directory. Start by defining a new instance of the 
-DataLink class in your main function. All methods in the DataLink class return JsonArray types.
+DataLink class in your main function. All methods in the DataLink class return JsonArray types. Timouts can be specified in the DataLink class (default is 5 sec connection timeout, 5 sec response timout).
 
 ``` java
 DataLink iex = new DataLink();
+
+// timouts can be customized
+iex.connect_timeout = 5;
+iex.response_timeout = 5;
 
 // get last trade data for AMD and NFLX
 Vector<String> tickers = new Vector<>(2);
@@ -33,7 +37,7 @@ JsonArray j_tops = iex.tops(new Vector<String>);
 ```
 
 The hist method can optionally download historical data in addition to fetching API data. Passing a blank string will fetch 
-data for all available days. Downloads will be saved in the format IEX_DEEP_" + date + ".gz"
+data for all available days. Downloads will be saved in the format "IEX_DEEP_" + date + ".gz" and "IEX_TOPS_" + date + ".gz". Each download should take several minutes to complete.
 ```java
 // download data for date
 iex.hist("20200501", true);
