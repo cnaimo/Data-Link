@@ -39,7 +39,7 @@ JsonArray j_tops = iex.tops(new Vector<String>);
 The hist method can optionally download historical data in addition to fetching API data. Passing a blank string will fetch 
 data for all available days. Downloads will be saved in the format "IEX_DEEP_" + date + ".gz" and "IEX_TOPS_" + date + ".gz". Each download should take several minutes to complete.
 ```java
-// download data for date
+// download data for date YYYYMMDD
 iex.hist("20200501", true);
 
 // download all available data
