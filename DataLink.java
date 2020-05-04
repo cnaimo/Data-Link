@@ -1,5 +1,4 @@
 // json_simple V3.1.1
-
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -38,7 +37,7 @@ public class DataLink {
             String response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
 
             // check that response is JsonArray compatible
-            // DEEP endpoint will return a single json object which is not JsonArray compatible
+            // some endpoints will return a single json object which is not JsonArray compatible
             if(response.charAt(0) != '['){
                 // add brackets for JsonArray compatibility
                 response = "[" + response + "]";
@@ -125,7 +124,7 @@ public class DataLink {
     }
 
     public JsonArray deep_get(String ticker) {
-        // Get book-depth quote for specified ticker. IEX only allows one ticker per request for this API endpoint
+        // GET book-depth quote for specified ticker. IEX only allows one ticker per request for this API endpoint
         return get("https://api.iextrading.com/1.0/deep?symbols=" + ticker);
     }
 
@@ -143,5 +142,51 @@ public class DataLink {
         }
 
         return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/book?symbols="));
+    }
+
+    public JsonArray trades_get(Vector<String> tickers){
+        // GET trade execution data
+        return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/trades?symbols="));
+
+    }
+
+    public JsonArray system_event(){
+        // market and data feed event information
+        return get("https://api.iextrading.com/1.0/deep/system-event");
+    }
+
+    public JsonArray trading_status_get(Vector<String> tickers){
+        // GET information on the trading status for ticker(s)
+        return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/trading-status?symbols="));
+    }
+
+    public JsonArray op_halt_status_get(Vector<String> tickers) {
+        // GET halt information for ticker(s)
+        return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/op-halt-status?symbols="));
+    }
+
+    public JsonArray ssr_status_get(Vector<String> tickers) {
+        // GET short sale restriction information for ticker(s)
+        return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/ssr-status?symbols="));
+    }
+
+    public JsonArray security_event_get(Vector<String> tickers) {
+        // GET events for ticker(s)
+        return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/security-event?symbols="));
+    }
+
+    public JsonArray trade_breaks_get(Vector<String> tickers) {
+        // GET trade break information for ticker(s)
+        return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/trade-breaks?symbols="));
+    }
+
+    public JsonArray auction_get(Vector<String> tickers) {
+        // GET auction information for ticker(s)
+        return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/auction?symbols="));
+    }
+
+    public JsonArray official_price(Vector<String> tickers) {
+        // official opening and closing prices available for IEX-listed tickers
+        return get(build_url(tickers, "https://api.iextrading.com/1.0/deep/official-price?symbols="));
     }
 }
