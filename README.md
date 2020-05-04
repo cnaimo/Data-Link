@@ -1,6 +1,5 @@
 # About
-DataLink is a simple Java interface for the older IEX API. This library currently supports tops, 
-last, deep, hist, and book endpoints. All data is provided by IEX.
+DataLink is a simple Java interface for the older IEX API. This library currently supports all IEX market data endpoints via get requests (websockets coming soon!). All data is provided by IEX.
 
 # Contact
 Questions? Feel free to reach out via my LinkedIn on my profile page. I'm also seeking employment in data science/finance!
